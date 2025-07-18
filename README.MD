@@ -43,7 +43,7 @@ selenium-ftest/
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/selenium-ftest.git
+   git clone https://github.com/0yunde/DevOps-selenium-functional-test.git
    cd selenium-ftest
 
 pip install -r requirements.txt
