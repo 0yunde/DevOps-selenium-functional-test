@@ -21,7 +21,7 @@ selenium-ftest/
 ├── .github/workflows/selenium-test.yml      # Pipeline CI con GitHub Actions
 ├── assets/                                  # (Opcional) Carpeta para capturas de error
 ├── ci_smoke_test.py                         # Script principal para CI
-├── smoke_test.py                            # Versión con pytest para generar reportes
+├── smoke_test.py                            # Versión local con Brave
 ├── requirements.txt                         # Dependencias del proyecto
 ├── .gitignore                               # Archivos ignorados por Git
 └── README.md                                # Este archivo 😄
@@ -29,7 +29,7 @@ selenium-ftest/
 ⚙️ Instalación
 
 # Clona el repositorio
-git clone https://github.com/tu-usuario/selenium-ftest.git
+git https://github.com/0yunde/DevOps-selenium-functional-test.git
 cd selenium-ftest
 
 # Crea un entorno virtual
