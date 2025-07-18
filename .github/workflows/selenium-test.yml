@@ -20,11 +20,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m venv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
+          venv/bin/pip install -r requirements.txt
 
       - name: Run CI-specific Selenium test
         run: |
-          run: |
-            venv/bin/python ci_smoke_test.py
-
+          venv/bin/python ci_smoke_test.py
