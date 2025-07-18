@@ -1,64 +1,83 @@
-# 🧪 Selenium Functional Test Automation 🚀
+# 🚀 Selenium Functional Test con GitHub Actions
 
-Este proyecto contiene una prueba funcional automatizada con **Selenium** que se ejecuta en un entorno de **CI usando GitHub Actions**, y genera un **reporte HTML** y capturas de pantalla como artefactos.
-
----
-
-## 📁 Estructura del Proyecto
-
-selenium-ftest/
-├── .github/workflows/selenium-test.yml # Pipeline CI con GitHub Actions
-├── assets/ # (opcional) Carpeta para capturas de error
-├── ci_smoke_test.py # Script principal para CI
-├── smoke_test.py # Versión con pytest para generar reportes
-├── requirements.txt # Dependencias del proyecto
-├── README.md # Este archivo 🙂
-└── .gitignore # Archivos ignorados por Git
+Este proyecto realiza pruebas funcionales automatizadas utilizando **Selenium WebDriver**, integradas con **GitHub Actions** para ejecución continua (CI).
 
 ---
 
 ## ✅ ¿Qué hace este proyecto?
 
-- Abre DuckDuckGo en modo `headless`
-- Realiza una búsqueda automatizada
-- Valida que existan resultados
-- Genera captura en caso de fallo
-- Produce reporte `HTML` con `pytest-html`
-- Sube artefactos (screenshot + report) al pipeline
+- Realiza una búsqueda en [DuckDuckGo](https://duckduckgo.com)
+- Verifica que se obtienen resultados
+- Genera un **reporte HTML** con `pytest-html`
+- Captura una imagen en caso de error
+- Publica los resultados como **artifact** en GitHub Actions
 
 ---
 
-## 🔧 Tecnologías usadas
+## 📁 Estructura del Proyecto
 
-- [Selenium WebDriver](https://www.selenium.dev/)
-- [Python 3.10+](https://www.python.org/)
-- [pytest](https://docs.pytest.org/)
-- [pytest-html](https://pypi.org/project/pytest-html/)
-- [GitHub Actions](https://github.com/features/actions)
-- [webdriver-manager](https://pypi.org/project/webdriver-manager/)
+```bash
+selenium-ftest/
+├── .github/workflows/selenium-test.yml      # Pipeline CI con GitHub Actions
+├── assets/                                  # (Opcional) Carpeta para capturas de error
+├── ci_smoke_test.py                         # Script principal para CI
+├── smoke_test.py                            # Versión con pytest para generar reportes
+├── requirements.txt                         # Dependencias del proyecto
+├── .gitignore                               # Archivos ignorados por Git
+└── README.md                                # Este archivo 😄
 
----
+⚙️ Instalación
 
-## 🚀 ¿Cómo correrlo localmente?
+# Clona el repositorio
+git clone https://github.com/tu-usuario/selenium-ftest.git
+cd selenium-ftest
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/0yunde/DevOps-selenium-functional-test.git
-   cd selenium-ftest
+# Crea un entorno virtual
+python -m venv .venv
+source .venv/bin/activate  # En Windows usa: .venv\Scripts\activate
 
+# Instala las dependencias
 pip install -r requirements.txt
 
+🧪 Ejecutar Pruebas Localmente
+
+Opción A – Script de prueba simple
+python ci_smoke_test.py
+
+Opción B – Usando Pytest con HTML Reporte
 pytest smoke_test.py --html=report.html
 
-🤖 CI con GitHub Actions
-Cada vez que haces push o pull_request sobre main, GitHub Actions:
+🖥️ Ver Reporte HTML
+Después de ejecutar pytest, abre el archivo report.html en tu navegador:
+start report.html  # En Windows
+open report.html   # En macOS
 
-Instala dependencias en Ubuntu
+🔄 Integración Continua (GitHub Actions)
+El archivo .github/workflows/selenium-test.yml configura una pipeline que:
 
-Ejecuta el test funcional (ci_smoke_test.py)
+Instala dependencias
 
-Guarda los artefactos:
+Ejecuta el test
 
-screenshot_error.png si falla
+Publica report.html y screenshot_error.png (si falla)
 
-report.html como reporte HTMLZ
+📦 Artifacts
+GitHub subirá como artifacts:
+
+✅ report.html: Resultado de la prueba
+
+📸 screenshot_error.png: Solo si la prueba falla
+
+📌 Requisitos
+Python 3.10+
+
+Google Chrome (en local si no usas headless)
+
+Git
+
+🧹 Tips
+Usa Ctrl+K V en VS Code para previsualizar el README.md.
+
+Asegúrate de que los encabezados tengan un espacio (## Encabezado).
+
+Deja una línea en blanco después de cada sección para que GitHub lo renderice bien.
