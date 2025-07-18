@@ -62,6 +62,7 @@ Ejecuta el test
 Publica report.html y screenshot_error.png (si falla)
 
 📦 Artifacts
+
 GitHub subirá como artifacts:
 
 ✅ report.html: Resultado de la prueba
@@ -69,15 +70,9 @@ GitHub subirá como artifacts:
 📸 screenshot_error.png: Solo si la prueba falla
 
 📌 Requisitos
+
 Python 3.10+
 
 Google Chrome (en local si no usas headless)
 
 Git
-
-🧹 Tips
-Usa Ctrl+K V en VS Code para previsualizar el README.md.
-
-Asegúrate de que los encabezados tengan un espacio (## Encabezado).
-
-Deja una línea en blanco después de cada sección para que GitHub lo renderice bien.
