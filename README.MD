@@ -1,64 +1,112 @@
-# 🧪 Selenium Functional Test Automation 🚀
+🚀 selenium-ptest
+Ejemplo de proyecto con pruebas funcionales en CI/Cd usando Selenium, pytest y GitHub Actions.
 
-Este proyecto contiene una prueba funcional automatizada con **Selenium** que se ejecuta en un entorno de **CI usando GitHub Actions**, y genera un **reporte HTML** y capturas de pantalla como artefactos.
+📁 Estructura del proyecto
+bash
+Copiar
+Editar
+selenium-ptest/
+│
+├── .github/workflows/selenium-test.yml   # Configuración del workflow CI con Actions
+├── assets/                                # Capturas, configuraciones, etc. (opcional)
+├── ci_smoke_test.py                       # Script principal para tests en CI
+├── smoke_test.py                          # Versión con pytest para reportes HTML
+├── requirements.txt                       # Dependencias del proyecto
+└── README.md                              # Este archivo
+🧪 Requisitos
+Python 3.7+
 
----
+Chrome instalado en runner (CI) o local
 
-## 📁 Estructura del Proyecto
+Dependencias definidas en requirements.txt:
 
-selenium-ftest/
-├── .github/workflows/selenium-test.yml # Pipeline CI con GitHub Actions
-├── assets/ # (opcional) Carpeta para capturas de error
-├── ci_smoke_test.py # Script principal para CI
-├── smoke_test.py # Versión con pytest para generar reportes
-├── requirements.txt # Dependencias del proyecto
-├── README.md # Este archivo 🙂
-└── .gitignore # Archivos ignorados por Git
+text
+Copiar
+Editar
+pytest
+pytest-html
+selenium
+webdriver-manager
+Instalación local:
 
----
-
-## ✅ ¿Qué hace este proyecto?
-
-- Abre DuckDuckGo en modo `headless`
-- Realiza una búsqueda automatizada
-- Valida que existan resultados
-- Genera captura en caso de fallo
-- Produce reporte `HTML` con `pytest-html`
-- Sube artefactos (screenshot + report) al pipeline
-
----
-
-## 🔧 Tecnologías usadas
-
-- [Selenium WebDriver](https://www.selenium.dev/)
-- [Python 3.10+](https://www.python.org/)
-- [pytest](https://docs.pytest.org/)
-- [pytest-html](https://pypi.org/project/pytest-html/)
-- [GitHub Actions](https://github.com/features/actions)
-- [webdriver-manager](https://pypi.org/project/webdriver-manager/)
-
----
-
-## 🚀 ¿Cómo correrlo localmente?
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/0yunde/DevOps-selenium-functional-test.git
-   cd selenium-ftest
-
+bash
+Copiar
+Editar
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+🔄 Cómo ejecutar tests
+🏠 En tu entorno local
+Prueba manual:
 
+bash
+Copiar
+Editar
+python ci_smoke_test.py
+Con pytest y reporte:
+
+bash
+Copiar
+Editar
 pytest smoke_test.py --html=report.html
+Luego abre report.html en cualquier navegador para ver logs, pasos y capturas.
 
-🤖 CI con GitHub Actions
-Cada vez que haces push o pull_request sobre main, GitHub Actions:
+🔧 En CI (GitHub Actions)
+Definimos el archivo .github/workflows/selenium-test.yml con estos pasos:
 
-Instala dependencias en Ubuntu
+Checkout del repositorio
 
-Ejecuta el test funcional (ci_smoke_test.py)
+Instalación de Python y dependencias
 
-Guarda los artefactos:
+Ejecución de ci_smoke_test.py en modo headless
 
-screenshot_error.png si falla
+Subida de captura de error (screenshot_error.png) como artifact
 
-report.html como reporte HTMLZ
+✅ Flujo del smoke test (ci_smoke_test.py)
+Inicia Chrome en modo headless con webdriver-manager
+
+Abre DuckDuckGo
+
+Busca “inmuebles en Bogotá”
+
+Valida que aparezcan resultados (h2 > a)
+
+Si falla, captura screenshot
+
+Cierra el navegador y retorna error si algo falló
+
+📊 Reportes con pytest
+El archivo smoke_test.py está preparado para usar pytest, genera un informe HTML con:
+
+Resultado PASS/FAIL
+
+Capturas automáticas al fallar
+
+Logs detallados de cada paso
+
+Ejemplo:
+
+bash
+Copiar
+Editar
+pytest smoke_test.py --html=report.html --self-contained-html
+☁️ Artifacts en CI
+GitHub Actions compila un artifact que incluye:
+
+report.html (resultado de pytest)
+
+screenshot_error.png si hay error
+
+Puedes descargarlo desde la pestaña Artifacts del pipeline.
+
+📝 Recomendaciones y mejoras
+Agregar pytest fixtures para el setup/teardown del navegador
+
+Usar pytest.ini para configurar filtros y logs
+
+Extender tests a otros escenarios: login, formulario, navegación, etc.
+
+Incluir análisis de cobertura o reportes de visualización
+
+🎯 Objetivo del proyecto
+Demostrar cómo integrar pruebas funcionales de interfaz con Selenium dentro de un pipeline CI moderno, generando reportes ricos y capturando errores automáticamente para facilitar el análisis y la mejora continua.
