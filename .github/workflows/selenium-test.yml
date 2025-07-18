@@ -25,5 +25,6 @@ jobs:
 
       - name: Run CI-specific Selenium test
         run: |
-          source venv/bin/activate
-          python ci_smoke_test.py
+          run: |
+            venv/bin/python ci_smoke_test.py
+
