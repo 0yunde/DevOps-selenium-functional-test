@@ -22,9 +22,23 @@ jobs:
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          pip install selenium webdriver-manager
+          pip install selenium webdriver-manager pytest pytest-html
 
-      - name: Run test
+      - name: Run test and generate HTML report
         run: |
           source .venv/bin/activate
-          python ci_smoke_test.py
+          pytest ci_smoke_test.py --html=report.html --self-contained-html --capture=tee-sys
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-html-report
+          path: report.html
+
+      - name: Upload screenshot if exists
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-artifacts
+          path: screenshot_error.png
