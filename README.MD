@@ -41,11 +41,11 @@ pip install -r requirements.txt
 
 🧪 Ejecutar Pruebas Localmente
 
-Opción A – Script de prueba simple
-python ci_smoke_test.py
+Opción A – Usando Pytest con HTML Reporte
+python ci_smoke_test.py --html=report.html
 
-Opción B – Usando Pytest con HTML Reporte
-pytest smoke_test.py --html=report.html
+Opción B – Usando navegador Brave
+pytest smoke_test.py 
 
 🖥️ Ver Reporte HTML
 Después de ejecutar pytest, abre el archivo report.html en tu navegador:
